@@ -20,10 +20,10 @@ function makeCard(obj) {
     card += '<div class="card-body">';
     card += '<h5 class="card-title"><a href="' + itemHref + '" class="text-dark">' + (obj.muellif_adi || "Müellif Bilinmiyor") + '</a></h5>';
     card += '<hr>';
-    if(obj.eser_adi) card += '<p class="mb-1"><small><strong>Eser:</strong> ' + obj.eser_adi + '</small></p>';
-    if(obj.telif_tarih_miladi) card += '<p class="mb-1"><small><strong>Telif:</strong> ' + obj.telif_tarih_miladi + '</small></p>';
-    if(obj.muellif_olum_tarihi) card += '<p class="mb-1"><small><strong>Ölüm:</strong> ' + obj.muellif_olum_tarihi + '</small></p>';
-    if(obj.padisah_donemi) card += '<p class="mb-1"><small><strong>Dönem:</strong> ' + obj.padisah_donemi + '</small></p>';
+    if(obj.eser_adi) card += '<p class="mb-1"><small><strong style="color:#b8960c;">Eser Adı:</strong> ' + obj.eser_adi + '</small></p>';
+if(obj.date) card += '<p class="mb-1"><small><strong style="color:#b8960c;">Tarih:</strong> ' + obj.date + '</small></p>';
+if(obj.muellif_olum_tarihi) card += '<p class="mb-1"><small><strong style="color:#b8960c;">Müellif Ölüm Tarihi:</strong> ' + obj.muellif_olum_tarihi + '</small></p>';
+if(obj.padisah_donemi) card += '<p class="mb-1"><small><strong style="color:#b8960c;">Padişah Dönemi:</strong> ' + obj.padisah_donemi + '</small></p>';
     card += '</div>';
     card += '<div class="card-footer text-end"><a href="' + itemHref + '" class="text-warning fw-bold">Detay →</a></div>';
     card += '</div></div>';
