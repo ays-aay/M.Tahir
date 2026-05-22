@@ -1,6 +1,6 @@
-field,display_name,btn
-eser_adi,Eser Adı,true
-telif_tarih_miladi,Telif Tarihi,true
-padisah_donemi,Padişah Dönemi,true
-eser_alt_turu,Eser Alt Türü,true
-kutupane_koleksiyon,Kütüphane,true
+field,display_name,btn,hidden,sort_name
+muellif_adi,Müellif,,,Müellif
+eser_adi,Eser Adı,,,Eser Adı
+telif_tarih_miladi,Tarih,,,Tarih
+muellif_olum_tarihi,Müellif Ölüm Tarihi,,,
+padisah_donemi,Padişah Dönemi,,,
