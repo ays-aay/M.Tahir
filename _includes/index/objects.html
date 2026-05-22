@@ -1,6 +1,4 @@
 {%- assign items = site.data[site.metadata] -%}
-<div class="row font-sans">
-    <div class="col-md-12">
-        <div class="row id="browse-items"></div>
-    </div>
-</div>
+<div class="row" id="browse-items"></div>
+
+{% include cb/js/browse-js.html %}
