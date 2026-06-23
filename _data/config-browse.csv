@@ -1,6 +1,19 @@
 field,display_name,btn,hidden,sort_name
-muellif_adi,Müellif,,,Müellif
+muellif_adi,Müellif Adı,,,Müellif Adı
 eser_adi,Eser Adı,,,Eser Adı
-telif_tarih_miladi,Tarih,,,Tarih
-muellif_olum_tarihi,Müellif Ölüm Tarihi,,,
+muellif_meslegi,Müellif Mesleği,,,
+muellif_olum,Müellif Ölüm,,,
+muellif_memleketi,Müellif Memleketi,,,
+muellif_aile,Aile,,,
 padisah_donemi,Padişah Dönemi,,,
+telif_tarih,Telif Tarihi,,,Telif Tarihi
+eser_dili,Eser Dili,,,
+eser_alt_turu,Eser Alt Türü,,,
+yazin_turu,Yazın Türü,,,
+baglanti_turu,Bağlantı Türü,,,
+baglantili_eser_adi,Bağlantılı Eser,,,
+baglantili_eser_yazari,Bağlantılı Eser Yazarı,,,
+tarihsel_kapsam,Tarihsel Kapsam,,,
+tematik_kapsam,Tematik Kapsam,,,
+ilave_notlar,İlave Notlar,,,
+kaynak,Kaynak,,,
