@@ -1,7 +1,9 @@
 field,index,display
-title,true,true
-date,true,true
-creator,true,false
-description,true,true
-subject,true,true
-location,true,false
+muellif_adi,true,true
+eser_adi,true,true
+muellif_meslegi,true,false
+muellif_memleketi,true,false
+padisah_donemi,true,false
+eser_dili,true,false
+tematik_kapsam,true,false
+ilave_notlar,true,false
