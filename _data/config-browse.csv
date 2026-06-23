@@ -1,19 +1,9 @@
-field,display_name,btn,hidden,sort_name
-muellif_adi,Müellif Adı,,,Müellif Adı
-eser_adi,Eser Adı,,,Eser Adı
-muellif_meslegi,Müellif Mesleği,,,
-muellif_olum,Müellif Ölüm,,,
-muellif_memleketi,Müellif Memleketi,,,
-muellif_aile,Aile,,,
-padisah_donemi,Padişah Dönemi,,,
-telif_tarih,Telif Tarihi,,,Telif Tarihi
-eser_dili,Eser Dili,,,
-eser_alt_turu,Eser Alt Türü,,,
-yazin_turu,Yazın Türü,,,
-baglanti_turu,Bağlantı Türü,,,
-baglantili_eser_adi,Bağlantılı Eser,,,
-baglantili_eser_yazari,Bağlantılı Eser Yazarı,,,
-tarihsel_kapsam,Tarihsel Kapsam,,,
-tematik_kapsam,Tematik Kapsam,,,
-ilave_notlar,İlave Notlar,,,
-kaynak,Kaynak,,,
+field,display_name,btn
+muellif_adi,Müellif Adı,true
+eser_adi,Eser Adı,true
+muellif_meslegi,Müellif Mesleği,true
+muellif_memleketi,Müellif Memleketi,true
+padisah_donemi,Padişah Dönemi,true
+eser_dili,Eser Dili,true
+yazin_turu,Yazın Türü,true
+baglanti_turu,Bağlantı Türü,true
