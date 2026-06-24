@@ -6,7 +6,7 @@
 ##########
 # HOME PAGE
 #
-featured-image: /assets/img/background.jpg
+featured-image: assets/img/background.jpg
 home-title-y-padding: 8em
 home-banner-image-position: center
 
