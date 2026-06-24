@@ -11,7 +11,7 @@
 
 var items = [
     {% for i in items %}
-    { "title":{{ i.title | strip | jsonify }}, "muellif_adi":{{ i.muellif_adi | strip | jsonify }}, "eser_adi":{{ i.eser_adi | strip | jsonify }}, "telif_tarih_miladi":{{ i.telif_tarih_miladi | strip | jsonify }}, "muellif_olum_tarihi":{{ i.muellif_olum_tarihi | strip | jsonify }}, "padisah_donemi":{{ i.padisah_donemi | strip | jsonify }}, "format":{% if i.format %}{{ i.format | jsonify }}{% else %}""{% endif %}, {% if i.youtubeid %} "youtube": {{ i.youtubeid | jsonify }}, {% endif %}{% if i.filename contains '/' %}"filename": "{{ i.filename }}" {% else %}"filename":"{{ '/objects/' | relative_url | append: i.filename }}"{% endif %}, "link": "{% if i.parentid %}{{ i.parentid }}#{{ i.objectid }}{% else %}{{ i.objectid }}{% endif %}", "id":{{ i.objectid | jsonify }} }{% unless forloop.last %},{% endunless %}{% endfor %}
+    { "title":{{ i.title | strip | jsonify }}, "muellif_adi":{{ i.muellif_adi | strip | jsonify }}, "eser_adi":{{ i.eser_adi | strip | jsonify }}, "telif_tarih_miladi":{{ i.telif_tarih_miladi | strip | jsonify }}, "muellif_olum_tarihi":{{ i.muellif_olum_tarihi | strip | jsonify }}, "padisah_donemi":{{ i.padisah_donemi | strip | jsonify }}, "fasil":{{ i.fasil | strip | jsonify }}, "format":{% if i.format %}{{ i.format | jsonify }}{% else %}""{% endif %}, {% if i.youtubeid %} "youtube": {{ i.youtubeid | jsonify }}, {% endif %}{% if i.filename contains '/' %}"filename": "{{ i.filename }}" {% else %}"filename":"{{ '/objects/' | relative_url | append: i.filename }}"{% endif %}, "link": "{% if i.parentid %}{{ i.parentid }}#{{ i.objectid }}{% else %}{{ i.objectid }}{% endif %}", "id":{{ i.objectid | jsonify }} }{% unless forloop.last %},{% endunless %}{% endfor %}
 ];
 
 var currentSortField = "random";
@@ -20,19 +20,18 @@ var currentSortLabel = "Rastgele";
 function makeCard(obj) {
     var itemHref = "{{ '/item.html' | relative_url | append: '?id=' }}" + obj.link;
     
-    // Sıralama alanına göre kart başlığını belirle
-   var cardTitle;
-if (currentSortField === "eser_adi") {
-    cardTitle = obj.eser_adi || obj.muellif_adi || "Bilinmiyor";
-} else if (currentSortField === "telif_tarih_miladi") {
-    cardTitle = obj.telif_tarih_miladi || obj.muellif_adi || "Bilinmiyor";
-} else if (currentSortField === "muellif_olum_tarihi") {
-    cardTitle = obj.muellif_olum_tarihi || obj.muellif_adi || "Bilinmiyor";
-} else if (currentSortField === "padisah_donemi") {
-    cardTitle = obj.padisah_donemi || obj.muellif_adi || "Bilinmiyor";
-} else {
-    cardTitle = obj.muellif_adi || "Müellif Bilinmiyor";
-}
+    var cardTitle;
+    if (currentSortField === "eser_adi") {
+        cardTitle = obj.eser_adi || obj.muellif_adi || "Bilinmiyor";
+    } else if (currentSortField === "telif_tarih_miladi") {
+        cardTitle = obj.telif_tarih_miladi || obj.muellif_adi || "Bilinmiyor";
+    } else if (currentSortField === "muellif_olum_tarihi") {
+        cardTitle = obj.muellif_olum_tarihi || obj.muellif_adi || "Bilinmiyor";
+    } else if (currentSortField === "padisah_donemi") {
+        cardTitle = obj.padisah_donemi || obj.muellif_adi || "Bilinmiyor";
+    } else {
+        cardTitle = obj.muellif_adi || "Müellif Bilinmiyor";
+    }
 
     var card = '<div class="item col-lg-4 col-md-6 col-sm-12 mb-2"><div class="card h-100">';
     card += '<div class="card-body">';
@@ -49,23 +48,29 @@ if (currentSortField === "eser_adi") {
     return card;
 }
 
-function filterItems(arr,q) {
+var activeFasilFilter = "";
+
+function filterItems(arr, q) {
     loadingIcon.classList.remove("d-none");
-    if (q=="") { 
-        var filteredItems = arr; 
-    } else {
-        q = q.trim().toUpperCase(); 
-        var filteredItems = [];
-        for (var i = 0, len = arr.length; i < len; i++) {
-            var val = "";
-            for (var k in arr[i]) { 
-                if (k != "img") { val += arr[i][k] + " "; }
-            }
-            if(val.toUpperCase().indexOf(q) != -1){
-                filteredItems.push(arr[i]);
-            }
-        }
+    var filteredItems = arr;
+    
+    if (activeFasilFilter != "") {
+        filteredItems = filteredItems.filter(function(item) {
+            return item.fasil && item.fasil === activeFasilFilter;
+        });
     }
+    
+    if (q != "") {
+        q = q.trim().toUpperCase();
+        filteredItems = filteredItems.filter(function(item) {
+            var val = "";
+            for (var k in item) {
+                if (k != "img") { val += item[k] + " "; }
+            }
+            return val.toUpperCase().indexOf(q) != -1;
+        });
+    }
+    
     document.querySelector("#numberOf").innerHTML = filteredItems.length + " / " + items.length + " kayıt";
     var cards = "";
     for (var i = 0, len = filteredItems.length; i < len; i++) {
@@ -74,7 +79,7 @@ function filterItems(arr,q) {
     browseItemsDiv.innerHTML = cards;
     if (q != "") { filterTextBox.focus(); }
     loadingIcon.classList.add("d-none");
-};
+}
 
 function shuffle(array) {
     var m = array.length, t, i;
@@ -95,25 +100,33 @@ var filterButton = document.querySelector("#filterButton");
 var browseItemsDiv = document.querySelector("#browseItems");
 
 var query = "";
+
 if(window.location.hash) {
     var hashValue = decodeURIComponent(location.hash.substr(1));
-    if (hashValue != 'maincontent') { 
-        query = hashValue;
+    if (hashValue != 'maincontent') {
+        if (hashValue.indexOf('fasil=') === 0) {
+            activeFasilFilter = hashValue.replace('fasil=', '');
+            filterTextBox.value = "";
+            filterItems(items, "");
+        } else {
+            query = hashValue;
+            filterTextBox.value = query;
+            filterItems(items, query);
+        }
     } else {
-        query = "";
+        filterItems(items, "");
     }
-    filterTextBox.value = query;
-    filterItems(items,query);
 } else {
-    query = "";
-    filterItems(items,query);
+    filterItems(items, "");
 }
 
 function submitFilter() {
+    activeFasilFilter = "";
     query = filterTextBox.value;
     window.location.hash = encodeURIComponent(query);
 }
 function resetFilter() {
+    activeFasilFilter = "";
     query = "";
     filterTextBox.value = query;
     window.location.hash = encodeURIComponent(query);
@@ -121,10 +134,17 @@ function resetFilter() {
 
 window.addEventListener("hashchange", function() {
     var hashValue = decodeURIComponent(location.hash.substr(1));
-    if (hashValue != 'maincontent') { 
-        query = hashValue;
-        filterTextBox.value = query;
-        filterItems(items,query);
+    if (hashValue != 'maincontent') {
+        if (hashValue.indexOf('fasil=') === 0) {
+            activeFasilFilter = hashValue.replace('fasil=', '');
+            filterTextBox.value = "";
+            filterItems(items, "");
+        } else {
+            activeFasilFilter = "";
+            query = hashValue;
+            filterTextBox.value = query;
+            filterItems(items, query);
+        }
     }
 });
 
@@ -137,7 +157,7 @@ function sorting(json_object, key_to_sort_by) {
         return ((x==null) ? 1: (y==null) ? -1: (x < y) ? -1 : ((x > y) ? 1 : 0));
     }
     json_object.sort(sortByKey);
-};
+}
 
 var sortFilter = document.querySelector("#sortFilter");
 var sortOptions = document.querySelectorAll(".browse-sort-item");
@@ -159,5 +179,5 @@ sortOptions.forEach((button) => {
         filterItems(items, query);
     }
   });
-}); 
+});
 </script>
