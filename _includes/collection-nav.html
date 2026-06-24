@@ -1,8 +1,3 @@
-<div style="background-color: #8B1A1A; text-align: right; padding: 4px 1rem;">
-  <div style="display: inline-block; width: 250px;">
-    {% include nav-search-lunr.html %}
-  </div>
-</div> 
 <nav class="navbar navbar-expand-lg {{ site.data.theme.navbar-color | default: 'navbar-dark' }} {{ site.data.theme.navbar-background | default: 'bg-dark' }}">
     <div class="container-fluid px-4">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#page-nav" aria-controls="page-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,6 +25,7 @@
                 {% endif %}
                 {%- endfor -%}
             </ul>
+            {% include nav-search-lunr.html %}
         </div>
     </div>
 </nav>
