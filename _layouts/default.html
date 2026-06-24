@@ -1,19 +1,17 @@
-<main id="maincontent" role="main" class="flex-shrink-0">
-  <div class="d-flex">
-    <nav class="sidebar" style="min-width:160px; background:#6b1a1a; padding:1rem;">
-      <ul class="list-unstyled mb-0">
-        <li><a href="/Tevarih-Bursali/browse.html#fasil=Tarihçiler" style="color:#fff; display:block; padding:6px 0;">Tarihçiler</a></li>
-        <li><a href="/Tevarih-Bursali/browse.html#fasil=Tabibler" style="color:#fff; display:block; padding:6px 0;">Tabibler</a></li>
-        <li><a href="/Tevarih-Bursali/browse.html#fasil=Riyaziyeciler" style="color:#fff; display:block; padding:6px 0;">Riyaziyeciler</a></li>
-        <li><a href="/Tevarih-Bursali/browse.html#fasil=Coğrafyacılar" style="color:#fff; display:block; padding:6px 0;">Coğrafyacılar</a></li>
-        <li><a href="/Tevarih-Bursali/browse.html#fasil=Hal Tercemesi" style="color:#fff; display:block; padding:6px 0;">Hal Tercemesi</a></li>
-        <li><a href="/Tevarih-Bursali/browse.html#fasil=14. Asır Muharrirleri" style="color:#fff; display:block; padding:6px 0;">14. Asır</a></li>
-        <li><a href="/Tevarih-Bursali/browse.html#fasil=Derç Edilmemiş" style="color:#fff; display:block; padding:6px 0;">Derç Edilmemiş</a></li>
-        <li><a href="/Tevarih-Bursali/browse.html#fasil=Sefaretnameler" style="color:#fff; display:block; padding:6px 0;">Sefaretnameler</a></li>
-      </ul>
-    </nav>
-    <div class="flex-grow-1">
-      {{ content }}
-    </div>
-  </div>
-</main>
+<!doctype html>
+<html lang="en" class="h-100">
+  <head prefix="og: http://ogp.me/ns#">
+    {% include head/head.html %}
+  </head>
+  <body class="d-flex flex-column h-100">
+    <div id="skip-to-content"><a href="#maincontent">Skip to main content</a></div>
+    {% include collection-banner.html %}
+    {% include collection-nav.html %}
+    <main id="maincontent" role="main" class="flex-shrink-0">
+    {{ content }}
+    </main>
+    {% include footer.html %}
+    {% include foot.html %}
+    {% include scroll-to-top.html %}
+  </body>
+</html>
