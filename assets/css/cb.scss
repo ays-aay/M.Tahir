@@ -24,9 +24,7 @@ $theme-colors: map-merge(
 @import "theme-colors", "theme-utilities";
 {% endif %}
 @import "base", "pages", "custom";
-
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap');
-
 body {
   background-color: #f5f0e8;
   font-family: 'Source Serif 4', Georgia, serif !important;
@@ -34,13 +32,11 @@ body {
   line-height: 1.6;
   font-size: 15px;
 }
-
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Playfair Display', Georgia, serif !important;
   font-weight: 700 !important;
   margin-bottom: 0.8rem !important;
 }
-
 /* --- Banner --- */
 #home-banner {
   background-image: url('../img/background.jpg') !important;
@@ -48,29 +44,27 @@ h1, h2, h3, h4, h5, h6 {
   background-repeat: no-repeat !important;
   background-position: center 40% !important;
 }
-
 .display-4 {
   font-family: 'Playfair Display', Georgia, serif !important;
   font-size: 4rem !important;
   font-weight: 700 !important;
 }
-
 .lead {
   font-size: 1.2rem !important;
   font-weight: 400 !important;
 }
-
 /* --- Kartlar --- */
 .card {
   background-color: rgba(255, 255, 255, 0.95);
   border-color: #d4a843 !important;
 }
-
 .card-footer {
   border-top-color: #d4a843 !important;
 }
-
 /* --- Navbar --- */
+.navbar.bg-dark {
+  background-color: #C47055 !important;
+}
 .navbar-nav .nav-link {
   color: rgba(255, 255, 255, 0.9) !important;
   font-weight: 700 !important;
@@ -78,57 +72,51 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Source Serif 4', Georgia, serif !important;
   padding-left: 0.75rem !important;
 }
-
 .navbar-nav .nav-link:hover,
 .navbar-nav .nav-link.active {
   color: #d4a843 !important;
 }
-
 /* --- Butonlar --- */
 .btn-primary {
-  background-color: #8B1A1A !important;
-  border-color: #8B1A1A !important;
+  background-color: #d4a843 !important;
+  border-color: #d4a843 !important;
   color: #fff !important;
 }
-
+.btn-primary:hover {
+  background-color: #b8912e !important;
+  border-color: #b8912e !important;
+}
 .btn-warning {
   background-color: #d4a843 !important;
   border-color: #d4a843 !important;
   color: #fff !important;
 }
-
 /* --- Linkler --- */
 a {
   color: #8B1A1A !important;
 }
-
 a:hover {
   color: #d4a843 !important;
 }
-
 /* --- Skip link gizle --- */
 #skip-to-content {
   display: none !important;
 }
-
 /* --- Scroll to top gizle --- */
 #scroll-to-top {
   display: none !important;
 }
-
 /* --- Sayfa içeriği --- */
 .container {
   padding-left: 1rem !important;
   padding-right: 1rem !important;
 }
-
 .page-content h2, main h2 {
   margin-top: 2rem !important;
   margin-bottom: 1rem !important;
   font-family: 'Playfair Display', Georgia, serif !important;
   font-weight: 700 !important;
 }
-
 .page-content p, main p {
   margin-bottom: 1rem !important;
   line-height: 1.8 !important;
