@@ -11,7 +11,7 @@
 
 var items = [
     {% for i in items %}
-    { "title":{{ i.title | strip | jsonify }}, "muellif_adi":{{ i.muellif_adi | strip | jsonify }}, "eser_adi":{{ i.eser_adi | strip | jsonify }}, "telif_tarih_miladi":{{ i.telif_tarih_miladi | strip | jsonify }}, "muellif_olum_tarihi":{{ i.muellif_olum_tarihi | strip | jsonify }}, "padisah_donemi":{{ i.padisah_donemi | strip | jsonify }}, "fasil":{{ i.fasil | strip | jsonify }}, "format":{% if i.format %}{{ i.format | jsonify }}{% else %}""{% endif %}, {% if i.youtubeid %} "youtube": {{ i.youtubeid | jsonify }}, {% endif %}{% if i.filename contains '/' %}"filename": "{{ i.filename }}" {% else %}"filename":"{{ '/objects/' | relative_url | append: i.filename }}"{% endif %}, "link": "{% if i.parentid %}{{ i.parentid }}#{{ i.objectid }}{% else %}{{ i.objectid }}{% endif %}", "id":{{ i.objectid | jsonify }} }{% unless forloop.last %},{% endunless %}{% endfor %}
+    { "title":{{ i.title | strip | jsonify }}, "muellif_adi":{{ i.muellif_adi | strip | jsonify }}, "eser_adi":{{ i.eser_adi | strip | jsonify }}, "telif_tarih":{{ i.telif_tarih | strip | jsonify }}, "muellif_olum":{{ i.muellif_olum | strip | jsonify }}, "padisah_donemi":{{ i.padisah_donemi | strip | jsonify }}, "fasil":{{ i.fasil | strip | jsonify }}, "sayfa_no":{{ i.sayfa_no | strip | jsonify }}, "format":{% if i.format %}{{ i.format | jsonify }}{% else %}""{% endif %}, {% if i.youtubeid %} "youtube": {{ i.youtubeid | jsonify }}, {% endif %}{% if i.filename contains '/' %}"filename": "{{ i.filename }}" {% else %}"filename":"{{ '/objects/' | relative_url | append: i.filename }}"{% endif %}, "link": "{% if i.parentid %}{{ i.parentid }}#{{ i.objectid }}{% else %}{{ i.objectid }}{% endif %}", "id":{{ i.objectid | jsonify }} }{% unless forloop.last %},{% endunless %}{% endfor %}
 ];
 
 var currentSortField = "random";
@@ -23,14 +23,14 @@ function makeCard(obj) {
     var cardTitle;
     if (currentSortField === "eser_adi") {
         cardTitle = obj.eser_adi || obj.muellif_adi || "Bilinmiyor";
-    } else if (currentSortField === "telif_tarih_miladi") {
-        cardTitle = obj.telif_tarih_miladi || obj.muellif_adi || "Bilinmiyor";
-    } else if (currentSortField === "muellif_olum_tarihi") {
-        cardTitle = obj.muellif_olum_tarihi || obj.muellif_adi || "Bilinmiyor";
+    } else if (currentSortField === "telif_tarih") {
+        cardTitle = obj.telif_tarih || obj.muellif_adi || "Bilinmiyor";
+    } else if (currentSortField === "muellif_olum") {
+        cardTitle = obj.muellif_olum || obj.muellif_adi || "Bilinmiyor";
     } else if (currentSortField === "padisah_donemi") {
         cardTitle = obj.padisah_donemi || obj.muellif_adi || "Bilinmiyor";
     } else {
-        cardTitle = obj.muellif_adi || "Müellif Bilinmiyor";
+        cardTitle = obj.muellif_adi || obj.eser_adi || "Bilinmiyor";
     }
 
     var card = '<div class="item col-lg-4 col-md-6 col-sm-12 mb-2"><div class="card h-100">';
@@ -39,9 +39,9 @@ function makeCard(obj) {
     card += '<hr>';
     if(obj.muellif_adi) card += '<p class="mb-1"><small><strong style="color:#8B6914;">Müellif:</strong> ' + obj.muellif_adi + '</small></p>';
     if(obj.eser_adi) card += '<p class="mb-1"><small><strong style="color:#8B6914;">Eser Adı:</strong> ' + obj.eser_adi + '</small></p>';
-    if(obj.telif_tarih_miladi) card += '<p class="mb-1"><small><strong style="color:#8B6914;">Tarih:</strong> ' + obj.telif_tarih_miladi + '</small></p>';
-    if(obj.muellif_olum_tarihi) card += '<p class="mb-1"><small><strong style="color:#8B6914;">Müellif Ölüm Tarihi:</strong> ' + obj.muellif_olum_tarihi + '</small></p>';
     if(obj.padisah_donemi) card += '<p class="mb-1"><small><strong style="color:#8B6914;">Padişah Dönemi:</strong> ' + obj.padisah_donemi + '</small></p>';
+    if(obj.telif_tarih) card += '<p class="mb-1"><small><strong style="color:#8B6914;">Telif Tarihi:</strong> ' + obj.telif_tarih + '</small></p>';
+    if(obj.sayfa_no) card += '<p class="mb-1"><small><strong style="color:#8B6914;">Sayfa No:</strong> ' + obj.sayfa_no + '</small></p>';
     card += '</div>';
     card += '<div class="card-footer text-end"><a href="' + itemHref + '" class="text-warning fw-bold">Detay →</a></div>';
     card += '</div></div>';
